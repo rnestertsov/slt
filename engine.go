@@ -30,4 +30,5 @@ type Engine interface {
 // returns an error.
 type OptimizerToggler interface {
 	SetOptimizerEnabled(enabled bool)
+	OptimizerEnabled() bool
 }

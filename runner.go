@@ -392,7 +392,8 @@ func (r *Runner) runQuery(ctx context.Context, query *Query) error {
 // compareOptimized runs a query with and without optimizer and compares results.
 func (r *Runner) compareOptimized(ctx context.Context, query *Query) error {
 	toggler := r.engine.(OptimizerToggler) // validated in Run()
-	defer toggler.SetOptimizerEnabled(false) // restore default disabled state
+	prevState := toggler.OptimizerEnabled()
+	defer toggler.SetOptimizerEnabled(prevState) // restore previous state
 
 	// Run with optimizer disabled
 	toggler.SetOptimizerEnabled(false)

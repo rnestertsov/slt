@@ -115,6 +115,7 @@ To enable comparison mode, your engine must implement the `OptimizerToggler` int
 // toggling optimizer state. Required only for comparison mode (-c flag).
 type OptimizerToggler interface {
     SetOptimizerEnabled(enabled bool)
+    OptimizerEnabled() bool
 }
 ```
 
@@ -123,6 +124,10 @@ Example implementation:
 ```go
 func (e *MyEngine) SetOptimizerEnabled(enabled bool) {
     e.optimizer = enabled
+}
+
+func (e *MyEngine) OptimizerEnabled() bool {
+    return e.optimizer
 }
 ```
 
